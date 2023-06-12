@@ -1,0 +1,481 @@
+@import url('https://fonts.googleapis.com/css2?family=Secular+One&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Secular One', sans-serif;
+    background-color: #b8f2e2;
+}
+
+.btn-custom-color {
+    background-color: #cedc00;
+}
+
+
+/* Traffic Light circles and Book A Trackday button */
+.circles {
+    visibility: hidden;
+    height: 0;
+}
+
+.red-circle {
+    height: 30px;
+    width: 30px;
+    background-color: red;
+    border-radius: 50%;
+    border: 2px solid #000;
+}
+
+.yellow-circle {
+    height: 30px;
+    width: 30px;
+    background-color: yellow;
+    border-radius: 50%;
+    border: 2px solid #000;
+}
+
+.booking-btn {
+    border: 2px solid black;
+    background-color: green;
+    color: #fff;
+    height: 25px;
+    padding: 0 10px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.booking-btn:hover {
+    background-color: #fff;
+    color: green;
+}
+
+.booking-btn:active {
+    transform: scale(0.98);
+}
+
+.track-day {
+    max-width: 98%;
+}
+
+
+/* Middle Nav Styling */
+.middle-nav {
+    margin-left: 0px !important;
+    background-color: #cedc00;
+    border: 2px solid #000;
+    border-right: none;
+    border-left: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.middle-nav div {
+    padding: 5px;
+}
+
+.middle-nav div a {
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.middle-nav ul li a:visited {
+    color: #000;
+}
+
+.middle-nav a:hover {
+    text-decoration: underline;
+}
+
+/* End of Middle Nav Styling */
+
+
+/**********Gallery Styling***********/
+.gallery h1 {
+    text-align: center;
+}
+
+.gallery-images {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.gallery-img {
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+    transition: 0.6s;
+    margin: 10px;
+    max-width: 100%;
+    width: 300px;
+    max-height: 170px;
+}
+
+.gallery-img:hover {
+    opacity: 0.7;
+}
+
+/* Gallery Modal Styling */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-top: 100px;
+    background-color: rgba(0, 0, 0, 0.8);
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    z-index: 1;
+}
+
+#caption {
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    margin: auto;
+    text-align: center;
+    color: #fff;
+    padding: 10px 0;
+}
+
+
+
+.modal-container {
+    position: relative;
+    display: flex;
+    height: 100%;
+    max-height: 500px;
+}
+
+.modalImg {
+    max-width: 100%;
+    width: 700px;
+    margin: auto;
+    display: block;
+    max-height: 500px;
+    border-radius: 10px;
+}
+
+
+.buttons {
+    position: absolute;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    padding: 10px;
+}
+
+.buttons:hover,
+.buttons:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+
+}
+
+.buttons.prev {
+    top: 50%;
+    transform: translateY(-50%);
+    left: 10%;
+}
+
+.buttons.next {
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10%;
+}
+
+.buttons.close {
+    top: 15px;
+    right: 50%;
+    transform: translateX(50%);
+}
+
+
+/* Add Animation */
+.modalImg,
+#caption {
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@keyframes zoom {
+    from {
+        transform: scale(0.1)
+    }
+
+    to {
+        transform: scale(1)
+    }
+}
+/* End of Gallery Modal Styling */
+
+
+/* Toast Styling */
+.message-container {
+    position: fixed;
+    top: 72px;
+    right: 50px;
+    z-index: 999999999999;
+}
+
+.toast:not(.showing):not(.show) {
+    opacity: unset;
+}
+
+
+/* Toast Styling End */
+
+
+/* Footer Styling */
+footer {
+    border-top: 2px solid #000;
+    color: #000;
+    margin: 10px;
+}
+
+footer a {
+    
+    color: #000;
+    text-decoration: none;
+}
+
+footer a:visited,
+footer a:hover {
+    color: #000;
+}
+
+footer .footer-links{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.signUpDiv{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.signUpBtn {
+    background-color: #cedc00;
+    border: 2px solid #000;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 1);
+}
+
+.toTopBtn {
+    height: 25px;
+    width: 25px;
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    border-radius: 50%;
+    margin-right: 20px;
+    margin-top: 10px;
+}
+
+.toTopBtn:hover, .toTopBtn:active , .toTopBtn:visited{
+    color: #fff;
+}
+
+/* Checkerboard pattern from here: https://www.30secondsofcode.org/css/s/checkerboard-pattern */
+/* For chequered flag in FAQ's page */
+#chequered-flag {
+        color: yellow;
+        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+        width: 40px;
+        height: 40px;
+        background-color: #fff;
+        background-image: linear-gradient(
+            45deg,
+            #000 25%,
+            transparent 25%,
+            transparent 75%,
+            #000 75%,
+            #000
+          ),
+          linear-gradient(
+            -45deg,
+            #000 25%,
+            transparent 25%,
+            transparent 75%,
+            #000 75%,
+            #000
+          );
+        background-size: 10px 10px;
+        background-repeat: repeat;
+}
+
+/* Footer Styling End */
+
+/* Styling just for nav icons and footer content on smaller screens */
+@media (min-width: 250px) and (max-width: 991px){
+
+    .profile-icon {
+        max-width: 90%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .basket-icon {
+        max-width: 90%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .nav-item {
+        padding-left: 20%;
+    }
+
+    .dropdown-menu {
+        max-width: 90%;
+    }
+    .signUpDiv {
+        justify-content: space-between;
+    }
+    .toTopBtn {
+        margin-right: 0;
+        margin-top: 0;
+    }
+    #newsletter-signup {
+        font-size: x-small;
+    }
+}
+
+
+
+/* Styling for Tablet Screens */
+@media (min-width: 500px) and (max-width: 850px){
+
+    .nav-item {
+        padding-left: 15%;
+    }
+
+    #banner {
+        font-size: 24px;
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+
+    .middle-nav {
+        max-width: 100%;
+    }
+
+    .middle-nav ul {
+        display: flex;
+        margin: auto;
+    }
+
+    .middle-nav ul li {
+        margin: auto;
+    }
+
+    .circles {
+        visibility: visible;
+        height: auto;
+    }
+
+    footer {
+        margin-top: 10px;
+    }
+
+    footer .footer-links {
+        flex-direction: row;
+    }
+
+    footer .footer-links a{
+        margin: auto;
+    }
+
+    .signUpDiv{
+        justify-content: end;
+    }
+
+    .signUpDiv span{
+        font-size: 18px;
+        margin: auto;
+    }
+}
+
+/* Styling for laptop Screens */
+@media (min-width: 950px) {
+
+    #banner {
+        margin-bottom: 0;
+        font-size: 28px;
+    }
+
+
+    .circles {
+        visibility: visible;
+        height: auto;
+        display: flex;
+    }
+
+    .circles div {
+        margin: 0 10px;
+    }
+
+    .middle-nav{
+        width: 100%;
+    }
+
+    .middle-nav ul {
+        display: flex;
+        margin: auto;
+    }
+
+    .middle-nav ul li {
+        margin: auto;
+    }
+
+
+    .gallery h1 {
+        justify-content: start;
+    }
+
+    footer{
+        display: flex;
+        justify-content: space-around;
+    }
+
+    footer .footer-links {
+        flex-direction: row;
+        margin-right: auto;
+        margin-left: 50px;
+    }
+
+    footer .footer-links a{
+        margin: 0 10px;
+    }
+
+    .signUpDiv{
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .signUpDiv span{
+        margin: auto;
+        margin-top: 5px ;
+    }
+
+}
+
