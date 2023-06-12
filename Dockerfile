@@ -14,6 +14,8 @@ RUN apt-get update && apt-get install -y \
 # Copy the code into the container
 COPY . /app/
 
+EXPOSE 8000 443 8080
+
 # Install the Python packages
 RUN pip install --no-cache-dir -r requirements.txt
 
