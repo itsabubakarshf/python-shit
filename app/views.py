@@ -9,6 +9,7 @@ from django.core.files.storage import default_storage
 from django.middleware.csrf import get_token
 import os
 from django.conf import settings
+import json
 
 
 model_path = os.path.join(settings.BASE_DIR, 'static', 'model', 'model.h5')
@@ -28,9 +29,9 @@ def preprocess_image(image):
 @csrf_exempt
 def predict(request):
     if request.method == 'POST':
-        if request.FILES['image']:
+        if request.FILES['file']:
             # Get the image from the incoming POST request
-            image_file = request.FILES['image']
+            image_file = request.FILES['file']
             # Save the file locally temporarily
             file_name = 'temp.jpg'
             file_path = os.path.join(settings.BASE_DIR, file_name)
@@ -43,18 +44,33 @@ def predict(request):
             image = preprocess_image(image)
             # Make a prediction
             prediction = model.predict(image)
-            # Calculate the probabilities
-            probabilities = prediction.tolist()[0]
-            max_probability = max(probabilities)
+
+
+            predicted_class_indices = np.argmax(prediction, axis=1)
+
+            index = ['0.5', 'Healthy', '0.10', 'Healthy','0.52', 'Healthy','0.65', 'Healthy', '0.89', 'Healthy','0.99', 'Healthy','1.2', 'Healthy','1.5', 'Healthy','1.66', 'Healthy','1.76', 'Healthy','2', 'Healthy' ]
+
+            sorted_indices = np.argsort(prediction[0])[::-1] 
+
+            new_index = index[sorted_indices[predicted_class_indices[0]]]
+            healthy_or_deficiency = 'Healthy'
+            deficiency_percent = 0.0
+            if new_index != 'Healthy':
+                healthy_or_deficiency = 'Deficiency'
+                deficiency_percent = new_index
+
+
             # Remove the temporary image file
             os.remove(file_path)
-            # Respond with prediction result and probabilities
+
+
             response = {
-                'prediction': prediction.tolist(),
-                'probabilities': probabilities,
-                'max_probability': max_probability
+                'healthy_or_deficiency': healthy_or_deficiency,
+                'deficiency_percent': float(deficiency_percent)
             }
-            return JsonResponse(response)
+
+            return JsonResponse(response, safe=False)
+        
         else:
             return JsonResponse({'error': 'No image file provided'}, status=400)
     else:
