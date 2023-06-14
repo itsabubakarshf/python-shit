@@ -127,7 +127,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-CSRF_TRUSTED_ORIGINS = ['http://localhost:3000','https://agrino.vercel.app/','http://127.0.0.1:8000/']
+CSRF_TRUSTED_ORIGINS = ['http://localhost:3000','https://agrino-ebon.vercel.app','http://127.0.0.1:8000/']
 ALLOWED_HOSTS=['*']
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ORIGIN_WHITELIST = (
@@ -135,7 +135,7 @@ CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000',
     'http://127.0.0.1:9000',
     'http://142.93.255.174:3000',
-    'https://agrino.vercel.app/',
+    'https://agrino-ebon.vercel.app',
 )
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
