@@ -15,7 +15,7 @@ import json
 model_path = os.path.join(settings.BASE_DIR, 'static', 'model', 'model.h5')
 print(f"Model path: {model_path}")
 model = tf.keras.models.load_model(model_path)
-
+# model = None
 
 def get_csrf_token(request):
     return JsonResponse({'csrfToken': get_token(request)})
@@ -26,18 +26,38 @@ def preprocess_image(image):
     image = np.expand_dims(image, axis=0)  # Add a batch dimension
     return image
 
+import base64
+
+
 @csrf_exempt
 def predict(request):
     if request.method == 'POST':
-        if request.FILES['file']:
+        if request.FILES.get('file'):
             # Get the image from the incoming POST request
-            image_file = request.FILES['file']
-            # Save the file locally temporarily
+            # image_file = request.FILES['file']
+            # data = request.data
+            # kind = data['kind']
+
+            # if kind == 'upload':
+            image_file = request.FILES.get('file')  # Access the uploaded file
+            # kind = request.POST.get('kind')  # Access the 'kind' field
             file_name = 'temp.jpg'
-            file_path = os.path.join(settings.BASE_DIR, file_name)
+            file_path = os.path.join(settings.STATIC_ROOT, file_name)
+            
             with open(file_path, 'wb') as f:
                 for chunk in image_file.chunks():
                     f.write(chunk)
+
+            # else:
+            #     print('camera inside')
+            #     format, imgstr = image_file.split(';base64,') 
+            #     ext = format.split('/')[-1] 
+            #     data = base64.b64decode(imgstr)
+
+            #     filename = os.path.join(settings.STATIC_ROOT, 'temp.' + ext)
+            #     with open(filename, 'wb') as f:
+            #         f.write(data)
+
             # Open the image file
             image = Image.open(file_path)
             # Preprocess the image
@@ -59,14 +79,12 @@ def predict(request):
                 healthy_or_deficiency = 'Deficiency'
                 deficiency_percent = new_index
 
-
-            # Remove the temporary image file
             os.remove(file_path)
-
 
             response = {
                 'healthy_or_deficiency': healthy_or_deficiency,
-                'deficiency_percent': float(deficiency_percent)
+                'deficiency_percent': float(deficiency_percent),
+                'file_path': file_path
             }
 
             return JsonResponse(response, safe=False)
